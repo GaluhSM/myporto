@@ -1,0 +1,44 @@
+---
+import Container from "@/components/common/Container.astro";
+import Button from "@/components/common/Button.astro";
+---
+
+<section class="relative pt-20 pb-32 md:pt-32 md:pb-48 overflow-hidden">
+  <Container>
+    <div class="max-w-3xl space-y-8">
+      <div class="space-y-4">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-text-primary">
+          Data Engineer <br />
+          <span class="text-text-muted font-semibold text-2xl sm:text-4xl mt-2 block">
+            Architecting Reliable, Scalable Data Pipelines.
+          </span>
+        </h1>
+        <p class="text-lg text-text-muted max-w-xl leading-relaxed">
+          Fokus pada pengolahan data dalam skala besar dengan performa tinggi.
+          Mengembangkan pipeline yang tahan banting, mudah di-maintain, dan siap distribusi.
+          Mengutamakan kualitas data, efisiensi storage, dan desain arsitektur yang future-proof.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-4">
+        <Button href="#contact" size="lg">
+          Contact Me
+        </Button>
+        <Button href="/cv.pdf" variant="outline" size="lg">
+          Download CV
+        </Button>
+      </div>
+
+      <div class="pt-8 border-t border-border grid grid-cols-3 gap-8 md:gap-12 w-fit">
+        <div>
+          <p class="text-2xl font-bold text-text-primary">2+</p>
+          <p class="text-xs text-text-muted uppercase tracking-wider">Years Exp.</p>
+        </div>
+        <div>
+          <p class="text-2xl font-bold text-text-primary">20+</p>
+          <p class="text-xs text-text-muted uppercase tracking-wider">Projects</p>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

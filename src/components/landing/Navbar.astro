@@ -1,0 +1,37 @@
+---
+import Container from "@/components/common/Container.astro";
+import { cn } from "@/lib/utils";
+
+const navItems = [
+  { label: "Work", href: "#work" },
+  { label: "Experience", href: "#experience" },
+  { label: "Contact", href: "#contact" },
+];
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-border/40 bg-bg-primary/80 backdrop-blur-md">
+  <Container class="flex h-16 items-center justify-between">
+    <a href="/" class="text-lg font-bold tracking-tight text-text-primary">
+      Galuh Saputra<span class="text-accent">.</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6">
+      {navItems.map((item) => (
+        <a 
+          href={item.href} 
+          class="text-sm font-medium text-text-muted hover:text-text-primary transition-colors"
+        >
+          {item.label}
+        </a>
+      ))}
+      
+      <a href="/secret" class="ml-4 p-2 text-text-muted hover:text-accent transition-colors" aria-label="Enter Secret Profile">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275Z"/></svg>
+      </a>
+    </nav>
+
+    <button class="md:hidden text-text-primary">
+      Menu
+    </button>
+  </Container>
+</header>

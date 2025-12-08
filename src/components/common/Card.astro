@@ -1,0 +1,24 @@
+---
+import { cn } from "@/lib/utils";
+
+interface Props {
+  class?: string;
+  href?: string;
+}
+
+const { class: className, href } = Astro.props;
+const Component = href ? 'a' : 'div';
+---
+
+<Component 
+  href={href}
+  class={cn(
+    "block rounded-xl border border-border bg-bg-primary text-text-primary shadow-sm transition-all",
+    href && "hover:border-accent/50 hover:shadow-md",
+    className
+  )}
+>
+  <div class="p-6">
+    <slot />
+  </div>
+</Component>

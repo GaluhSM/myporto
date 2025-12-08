@@ -1,0 +1,52 @@
+---
+import Section from "@/components/common/Section.astro";
+import Container from "@/components/common/Container.astro";
+import Card from "@/components/common/Card.astro";
+import Badge from "@/components/common/Badge.astro";
+import { getExperience } from "@/lib/data-fetcher";
+
+const jobs = await getExperience();
+
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('id-ID', { month: 'short', year: 'numeric' }).format(date);
+};
+---
+
+<Section id="experience">
+  <Container>
+    <div class="mb-12">
+      <h2 class="text-3xl font-bold text-text-primary">Experience</h2>
+      <p class="mt-2 text-text-muted">Perjalanan profesional dan kontribusi industri.</p>
+    </div>
+
+    <div class="space-y-6 max-w-4xl">
+      {jobs.map((job) => (
+        <Card class="flex flex-col md:flex-row gap-4 md:items-start p-6">
+          <div class="md:w-1/4">
+            <p class="text-sm font-mono text-text-muted">
+              {formatDate(job.data.startDate)} — {job.data.current ? "Present" : formatDate(job.data.endDate!)}
+            </p>
+          </div>
+          <div class="md:w-3/4 space-y-2">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-semibold text-text-primary">
+                {job.data.role}
+              </h3>
+              {job.data.current && <Badge class="bg-accent/10 text-accent border-accent/20">Current</Badge>}
+            </div>
+            <p class="text-sm font-medium text-text-primary">
+              {job.data.company} · {job.data.location}
+            </p>
+            <div class="prose prose-sm prose-slate dark:prose-invert text-text-muted mt-4">
+               <p class="text-sm line-clamp-3">
+                 {job.body} 
+                 {/* Note: render body markdown secara proper butuh sedikit trik di Astro, 
+                     untuk sekarang kita tampilkan raw text ringkas dulu agar layout jadi. */}
+               </p>
+            </div>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </Container>
+</Section>

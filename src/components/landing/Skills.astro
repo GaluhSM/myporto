@@ -1,0 +1,31 @@
+---
+import Section from "@/components/common/Section.astro";
+import Container from "@/components/common/Container.astro";
+import { SKILLS } from "@/lib/constants";
+---
+
+<Section class="bg-slate-50 dark:bg-slate-900/20 border-y border-border">
+  <Container>
+    <div class="mb-12">
+      <h2 class="text-3xl font-bold text-text-primary">Technical Proficiency</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {SKILLS.map((group) => (
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold text-text-primary border-b border-border pb-2">
+            {group.category}
+          </h3>
+          <ul class="space-y-2">
+            {group.skills.map((skill) => (
+              <li class="flex items-center text-text-muted">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent mr-2"></span>
+                {skill}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </Container>
+</Section>

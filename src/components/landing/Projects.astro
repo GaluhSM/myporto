@@ -1,0 +1,56 @@
+---
+import Section from "@/components/common/Section.astro";
+import Container from "@/components/common/Container.astro";
+import Card from "@/components/common/Card.astro";
+import Badge from "@/components/common/Badge.astro";
+import Button from "@/components/common/Button.astro";
+import { getFeaturedProjects } from "@/lib/data-fetcher";
+
+const projects = await getFeaturedProjects();
+---
+
+<Section id="work">
+  <Container>
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      <div>
+        <h2 class="text-3xl font-bold text-text-primary">Selected Work</h2>
+        <p class="mt-2 text-text-muted">Proyek unggulan yang memberikan dampak bisnis nyata.</p>
+      </div>
+      <Button href="https://github.com/username" variant="outline" target="_blank">
+        View Github
+      </Button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {projects.map((project) => (
+        <Card href={project.data.link || project.data.repo} class="group h-full flex flex-col hover:border-accent/40 transition-colors duration-300">
+           {/* Image Placeholder */}
+           <div class="aspect-video w-full bg-slate-100 dark:bg-slate-800 rounded-lg mb-4 flex items-center justify-center text-text-muted group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">
+              {/* Cover render disini. Kalau ga, icon folder. */}
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+           </div>
+
+           <div class="flex flex-col flex-1">
+             <div class="flex items-start justify-between mb-2">
+                <h3 class="text-xl font-bold text-text-primary group-hover:text-accent transition-colors">
+                  {project.data.title}
+                </h3>
+                {/* Arrow icon yg miring kalau di-hover */}
+                <svg class="w-5 h-5 text-text-muted group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+             </div>
+             
+             <p class="text-text-muted mb-6 flex-1">
+               {project.data.description}
+             </p>
+
+             <div class="flex flex-wrap gap-2 mt-auto">
+               {project.data.tags.map(tag => (
+                 <Badge>{tag}</Badge>
+               ))}
+             </div>
+           </div>
+        </Card>
+      ))}
+    </div>
+  </Container>
+</Section>

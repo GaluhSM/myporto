@@ -1,0 +1,41 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Navbar from "@/components/landing/Navbar.astro";
+import Hero from "@/components/landing/Hero.astro";
+import Experience from "@/components/landing/Experience.astro";
+import Projects from "@/components/landing/Projects.astro";
+import Skills from "@/components/landing/Skills.astro";
+import Container from "@/components/common/Container.astro";
+---
+
+<BaseLayout title="Galuh Saputra | Data Engineer">
+  <Navbar />
+  
+  <main>
+    <Hero />
+    <Projects />
+    <Experience />
+    <Skills />
+
+    <section id="contact" class="py-24 border-t border-border">
+      <Container class="text-center">
+        <h2 class="text-3xl font-bold text-text-primary mb-6">Ready to Collaborate?</h2>
+        <p class="text-text-muted max-w-xl mx-auto mb-8">
+          Saya terbuka untuk kesempatan freelance atau full-time yang menantang. 
+          Mari diskusikan bagaimana saya bisa membantu tim Anda.
+        </p>
+        <a 
+          href="mailto:galmei.id@gmail.com" 
+          class="text-2xl font-bold text-accent hover:underline decoration-2 underline-offset-4"
+        >
+          galmei.id@gmail.com
+        </a>
+        
+        <div class="mt-16 text-sm text-text-muted">
+          &copy; {new Date().getFullYear()} Galuh Saputra. All rights reserved. <br/>
+          Built with Astro, Tailwind v4, & Svelte.
+        </div>
+      </Container>
+    </section>
+  </main>
+</BaseLayout>

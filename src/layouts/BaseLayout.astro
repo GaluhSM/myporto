@@ -1,0 +1,33 @@
+---
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  theme?: "corporate" | "secret";
+}
+
+const { 
+  title, 
+  description = "Profesional Portfolio", 
+  theme = "corporate" 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="id" data-theme={theme}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="antialiased min-h-screen flex flex-col">
+    <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <slot />
+    </main>
+
+    </body>
+</html>
