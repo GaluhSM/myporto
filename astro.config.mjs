@@ -4,7 +4,7 @@ import svelte from '@astrojs/svelte';
 
 export default defineConfig({
   site: 'https://GaluhSM.github.io',
-  base: '',
+  base: '/myporto',
   vite: {
     plugins: [tailwindcss()]
   },
