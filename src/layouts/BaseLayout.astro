@@ -4,30 +4,51 @@ import "@/styles/global.css";
 interface Props {
   title: string;
   description?: string;
+  image?: string;
   theme?: "corporate" | "secret";
 }
 
 const { 
   title, 
-  description = "Profesional Portfolio", 
+  description = "Frontend Engineer Portfolio specializing in Astro & Svelte.", 
+  image = "/og-image.png",
   theme = "corporate" 
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="id" data-theme={theme}>
+<html lang="id" data-theme={theme} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/myporto/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
     <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+    
+    <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
-  <body class="antialiased min-h-screen flex flex-col">
+  
+  <body class="antialiased min-h-screen flex flex-col bg-bg-primary text-text-primary transition-colors duration-300">
     <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <slot />
     </main>
-
-    </body>
+  </body>
 </html>
